@@ -78,7 +78,7 @@ pub struct ProgramCache {
     entries_cache: Rc<RefCell<HashMap<Pubkey, CacheEntry>>>,
     // The function registry (syscalls) to use for verifying and loading
     // program ELFs.
-    program_runtime_environment: ProgramRuntimeEnvironment,
+    pub program_runtime_environment: ProgramRuntimeEnvironment,
 }
 
 impl ProgramCache {
@@ -121,7 +121,7 @@ impl ProgramCache {
         self.cache.borrow_mut()
     }
 
-    fn replenish(
+    pub fn replenish(
         &self,
         program_id: Pubkey,
         entry: Arc<ProgramCacheEntry>,
@@ -258,7 +258,7 @@ impl Builtin {
     }
 }
 
-static BUILTINS: &[Builtin] = &[
+pub static BUILTINS: &[Builtin] = &[
     Builtin {
         program_id: solana_system_program::id(),
         name: "system_program",
